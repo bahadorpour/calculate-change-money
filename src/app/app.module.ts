@@ -1,8 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faLock, faPlus, faSortAmountDown, faTh } from '@fortawesome/free-solid-svg-icons';
 import { AppComponent } from './app.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PaymentAmountComponent } from './components/payment-amount/payment-amount.component';
 
 @NgModule({
@@ -17,4 +17,10 @@ import { PaymentAmountComponent } from './components/payment-amount/payment-amou
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(iconLibrary: FaIconLibrary) {
+    // Add an icon to the library for convenient access in other components
+    iconLibrary.addIcons(faLock, faTh, faSortAmountDown, faPlus);;
+  }
+
+}
