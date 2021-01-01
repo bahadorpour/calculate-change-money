@@ -4,11 +4,17 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 import { faLock, faPlus, faSortAmountDown, faTh } from '@fortawesome/free-solid-svg-icons';
 import { AppComponent } from './app.component';
 import { PaymentAmountComponent } from './components/payment-amount/payment-amount.component';
+import { SaleComponent } from './components/shared/sale/sale.component';
+import { PayCashComponent } from './components/pay-cash/pay-cash.component';
+import { NumericKeyboardComponent } from './components/shared/numeric-keyboard/numeric-keyboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PaymentAmountComponent
+    PaymentAmountComponent,
+    SaleComponent,
+    PayCashComponent,
+    NumericKeyboardComponent
   ],
   imports: [
     BrowserModule,
