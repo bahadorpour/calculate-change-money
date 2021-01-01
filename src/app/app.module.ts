@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PaymentAmountComponent } from './components/payment-amount/payment-amount.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PaymentAmountComponent
   ],
   imports: [
     BrowserModule,
