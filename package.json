@@ -33,6 +33,7 @@
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
     "rxjs": "~6.4.0",
+    "simple-keyboard": "^2.32.69",
     "sweetalert2": "^10.12.6",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
