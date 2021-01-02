@@ -9,7 +9,6 @@ import Keyboard from 'simple-keyboard';
     './numeric-keyboard.component.css'
   ],
   encapsulation: ViewEncapsulation.None,
-
 })
 export class NumericKeyboardComponent implements OnInit {
 
@@ -25,9 +24,9 @@ export class NumericKeyboardComponent implements OnInit {
     this.keyboard = new Keyboard({
       onChange: input => this.onChange(input),
       onKeyPress: button => this.onKeyPress(button),
-      theme: "hg-theme-default myTheme1",
+      theme: "hg-theme-default grayTheme",
       layout: {
-        default: ['1 2 3', '4 5 6', '7 8 9', '. 0 {bksp}']
+        default: ['7 8 9', '4 5 6', '1 2 3', '{bksp} 0 .']
       },
       display: {
         '{bksp}': '⌫'
