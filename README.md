@@ -1,36 +1,40 @@
 # Actions 
-[![build status](https://github.com/bahadorpour/calculate-change-money/workflows/Build/badge.svg)](https://github.com/bahadorpour/calculate-change-money/actions)
+<!-- [![build status](https://github.com/bahadorpour/calculate-change-money/workflows/Build/badge.svg)](https://github.com/bahadorpour/calculate-change-money/actions) -->
 
-# CalculateChangeMoney
+# Calculate Change Money (Geldstueckelung) 🖥 🛍 ✅ 
+
+## Documentation 📖
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.12.
 
-## Development server
+### To run app on your own computer 🚀 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* Clone this repository
+* `npm install`
+* Run `ng serve` for a dev server
+* Visit [http://localhost:4200](http://localhost:4200)
 
-## Code scaffolding
+### Sweet alert
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+sweetalert2: A beautiful, responsive, customizable, accessible (wai-aria) replacement for javascript's popup boxes [Integrations with Angular](https://github.com/sweetalert2/ngx-sweetalert2).
 
-## Build
+### Font Awesome
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+FortAwesome: Get vector icons and social logos [Integrations with Angular](https://github.com/FortAwesome/angular-fontawesome).
 
-## Running unit tests
+### Virtual Keyboard
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+simple-keyboard: A Javascript Virtual Keyboard - Customizable, responsive and lightweight [Integrations with Angular](https://hodgef.com/simple-keyboard/).
 
-## Running end-to-end tests
+## Further help 📋
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+* Code scaffolding :  Run `ng generate component component-name`
+* Build : Run `ng build`
+* Running unit tests : Run `ng test`
+* Running end-to-end tests : Run `ng e2e`
+* Help : Run `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-## Further help
+## Contributing 📧 🎯
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-## sweetalert2
-A beautiful, responsive, customizable, accessible (wai-aria) replacement for javascript's popup boxes [Integrations with Angular](https://github.com/sweetalert2/ngx-sweetalert2).
-
-## Font Awesome
-Get vector icons and social logos [Integrations with Angular](https://github.com/FortAwesome/angular-fontawesome).
+PRs and issues are always welcome. Feel free to submit any issues you have at:
+[issues](https://github.com/bahadorpour/calculate-change-money/issues)

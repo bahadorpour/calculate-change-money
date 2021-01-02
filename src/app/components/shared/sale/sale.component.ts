@@ -1,21 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ShareDataService } from 'src/app/services/share-data.service';
 
 @Component({
   selector: 'app-sale',
   templateUrl: './sale.component.html',
   styleUrls: ['./sale.component.css']
 })
-export class SaleComponent implements OnInit {
+export class SaleComponent implements OnInit, OnDestroy {
   randomNumber: number; // a random number for total cost
   totalCost: string;
+  private subscription: Subscription = new Subscription();
 
-  constructor() {
+  constructor(private shareDataService: ShareDataService) {
     this.randomNumber = this.getRandomFloatInclusive(1, 100); // TO DO: change to 100000
     this.totalCost = this.convertNumToLocale(this.randomNumber);
-    console.log(this.totalCost);
+    this.shareDataService.updateTotalCost(this.randomNumber);
   }
 
   ngOnInit() {
+    this.subscribeKeyboardInput();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   /**
@@ -24,13 +32,13 @@ export class SaleComponent implements OnInit {
    * @param number given number
    * @returns A string with a language-sensitive representation of the given number
    */
-  private convertNumToLocale(number: number): string {
-    return number.toLocaleString(
+  private convertNumToLocale(num: number): string {
+    return num.toLocaleString(
       'de-DE',
       {
         style: 'currency',
         currency: 'EUR'
-      })
+      });
   }
 
   /**
@@ -41,8 +49,20 @@ export class SaleComponent implements OnInit {
   private getRandomFloatInclusive(min: number, max: number): number {
     min = Math.ceil(min);
     max = Math.floor(max);
-    let randomNumber = Math.random() * (max - min + 1) + min;
-    let fixedPoint = randomNumber.toFixed(2);
+    const randomNumber = Math.random() * (max - min + 1) + min;
+    const fixedPoint = randomNumber.toFixed(2);
     return parseFloat(fixedPoint);
+  }
+
+  /**
+   * Recive total cost from sale component
+   */
+  private subscribeKeyboardInput() {
+    this.subscription.add(
+      this.shareDataService.currentKeyboardInput.subscribe(
+        input => {
+          console.log('inputttt', input);
+        })
+    );
   }
 }

@@ -9,7 +9,6 @@ export class PaymentAmountComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

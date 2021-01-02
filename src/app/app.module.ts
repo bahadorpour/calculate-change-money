@@ -4,9 +4,9 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 import { faLock, faPlus, faSortAmountDown, faTh } from '@fortawesome/free-solid-svg-icons';
 import { AppComponent } from './app.component';
 import { PaymentAmountComponent } from './components/payment-amount/payment-amount.component';
-import { SaleComponent } from './components/shared/sale/sale.component';
-import { PayCashComponent } from './components/shared/pay-cash/pay-cash.component';
 import { NumericKeyboardComponent } from './components/shared/numeric-keyboard/numeric-keyboard.component';
+import { PayCashComponent } from './components/shared/pay-cash/pay-cash.component';
+import { SaleComponent } from './components/shared/sale/sale.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,6 @@ import { NumericKeyboardComponent } from './components/shared/numeric-keyboard/n
 export class AppModule {
   constructor(iconLibrary: FaIconLibrary) {
     // Add an icon to the library for convenient access in other components
-    iconLibrary.addIcons(faLock, faTh, faSortAmountDown, faPlus);;
+    iconLibrary.addIcons(faLock, faTh, faSortAmountDown, faPlus);
   }
-
 }
