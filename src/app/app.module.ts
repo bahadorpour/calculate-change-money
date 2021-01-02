@@ -5,7 +5,7 @@ import { faLock, faPlus, faSortAmountDown, faTh } from '@fortawesome/free-solid-
 import { AppComponent } from './app.component';
 import { PaymentAmountComponent } from './components/payment-amount/payment-amount.component';
 import { SaleComponent } from './components/shared/sale/sale.component';
-import { PayCashComponent } from './components/pay-cash/pay-cash.component';
+import { PayCashComponent } from './components/shared/pay-cash/pay-cash.component';
 import { NumericKeyboardComponent } from './components/shared/numeric-keyboard/numeric-keyboard.component';
 
 @NgModule({
