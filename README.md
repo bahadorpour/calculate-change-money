@@ -1,5 +1,5 @@
 # Actions 
-[![build status](https://github.com/bahadorpour/calculate-change-money/workflows/Build/badge.svg)](https://github.com/bahadorpour/calculate-change-money/actions)
+<!-- [![build status](https://github.com/bahadorpour/calculate-change-money/workflows/Build/badge.svg)](https://github.com/bahadorpour/calculate-change-money/actions) -->
 
 # Calculate Change Money (Geldstueckelung) 🖥 🛍 ✅ 
 
