@@ -13,15 +13,15 @@ export class ShareDataService {
 
   // Behavior Subject: 0 is an initial value. if there is a subscription after this, it would get 0 value immediately
   private totalCostSource = new BehaviorSubject<number>(0);
-  currentTotalCost = this.totalCostSource.asObservable();// get an observable from behavior subject
+  currentTotalCost = this.totalCostSource.asObservable(); // get an observable from behavior subject
 
   constructor() { }
 
   /**
    * Send totalCost to an observable using next() method
-   * @param totalCost 
+   * @param totalCost total cost
    */
   updateTotalCost(totalCost: number) {
-    this.totalCostSource.next(totalCost)
+    this.totalCostSource.next(totalCost);
   }
 }

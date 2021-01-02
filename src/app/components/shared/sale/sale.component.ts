@@ -23,13 +23,13 @@ export class SaleComponent implements OnInit {
    * @param number given number
    * @returns A string with a language-sensitive representation of the given number
    */
-  private convertNumToLocale(number: number): string {
-    return number.toLocaleString(
+  private convertNumToLocale(num: number): string {
+    return num.toLocaleString(
       'de-DE',
       {
         style: 'currency',
         currency: 'EUR'
-      })
+      });
   }
 
   /**
@@ -40,8 +40,8 @@ export class SaleComponent implements OnInit {
   private getRandomFloatInclusive(min: number, max: number): number {
     min = Math.ceil(min);
     max = Math.floor(max);
-    let randomNumber = Math.random() * (max - min + 1) + min;
-    let fixedPoint = randomNumber.toFixed(2);
+    const randomNumber = Math.random() * (max - min + 1) + min;
+    const fixedPoint = randomNumber.toFixed(2);
     return parseFloat(fixedPoint);
   }
 }
