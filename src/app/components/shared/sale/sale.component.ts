@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ShareDataService } from 'src/app/services/share-data.service';
 
 @Component({
   selector: 'app-sale',
@@ -8,15 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class SaleComponent implements OnInit {
   randomNumber: number; // a random number for total cost
   totalCost: string;
-
-  constructor() {
+  constructor(private data: ShareDataService) {
     this.randomNumber = this.getRandomFloatInclusive(1, 100); // TO DO: change to 100000
     this.totalCost = this.convertNumToLocale(this.randomNumber);
-    console.log(this.totalCost);
+    this.data.updateTotalCost(this.randomNumber);
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   /**
    * format numbers to locale with currency format
