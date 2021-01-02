@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ShareDataService } from 'src/app/services/share-data.service';
 
 @Component({
@@ -6,16 +7,24 @@ import { ShareDataService } from 'src/app/services/share-data.service';
   templateUrl: './sale.component.html',
   styleUrls: ['./sale.component.css']
 })
-export class SaleComponent implements OnInit {
+export class SaleComponent implements OnInit, OnDestroy {
   randomNumber: number; // a random number for total cost
   totalCost: string;
-  constructor(private data: ShareDataService) {
+  private subscription: Subscription = new Subscription();
+
+  constructor(private shareDataService: ShareDataService) {
     this.randomNumber = this.getRandomFloatInclusive(1, 100); // TO DO: change to 100000
     this.totalCost = this.convertNumToLocale(this.randomNumber);
-    this.data.updateTotalCost(this.randomNumber);
+    this.shareDataService.updateTotalCost(this.randomNumber);
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.subscribeKeyboardInput();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
   /**
    * format numbers to locale with currency format
@@ -43,5 +52,17 @@ export class SaleComponent implements OnInit {
     const randomNumber = Math.random() * (max - min + 1) + min;
     const fixedPoint = randomNumber.toFixed(2);
     return parseFloat(fixedPoint);
+  }
+
+  /**
+   * Recive total cost from sale component
+   */
+  private subscribeKeyboardInput() {
+    this.subscription.add(
+      this.shareDataService.currentKeyboardInput.subscribe(
+        input => {
+          console.log('inputttt', input);
+        })
+    );
   }
 }

@@ -1,6 +1,6 @@
 /**
  * ShareDataService: To share data between components without any relationships.
- * This servvice ensures that the component always receives the most recent data
+ * This service ensures that the component always receives the most recent data
  * Author: Mojdeh Bahadorpour
  */
 import { Injectable } from '@angular/core';
@@ -15,6 +15,9 @@ export class ShareDataService {
   private totalCostSource = new BehaviorSubject<number>(0);
   currentTotalCost = this.totalCostSource.asObservable(); // get an observable from behavior subject
 
+  private numKeyboardSource = new BehaviorSubject<string>('');
+  currentKeyboardInput = this.numKeyboardSource.asObservable();
+
   constructor() { }
 
   /**
@@ -23,5 +26,13 @@ export class ShareDataService {
    */
   updateTotalCost(totalCost: number) {
     this.totalCostSource.next(totalCost);
+  }
+
+  /**
+  * Send numeric keyboard value to an observable using next() method
+  * @param input keyboard input
+  */
+  updateNumKeyboards(input: string) {
+    this.numKeyboardSource.next(input);
   }
 }

@@ -1,5 +1,11 @@
+/*
+ * Numeric keyboard : A reusable component to implement a numeric simple keyboard
+ * Author: Mojdeh Bahadorpour
+ */
+
 import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
 import Keyboard from 'simple-keyboard';
+import { ShareDataService } from 'src/app/services/share-data.service';
 
 @Component({
   selector: 'app-numeric-keyboard',
@@ -15,7 +21,7 @@ export class NumericKeyboardComponent implements AfterViewInit {
   value = '';
   keyboard: Keyboard;
 
-  constructor() { }
+  constructor(private shareDataService: ShareDataService) { }
 
   ngAfterViewInit() {
     this.keyboard = new Keyboard({
@@ -33,11 +39,12 @@ export class NumericKeyboardComponent implements AfterViewInit {
 
   onChange = (input: string) => {
     this.value = input;
-    console.log('Input changed', input);
+    this.shareDataService.updateNumKeyboards(this.value);
+    // console.log('Input changed', input);
   }
 
   onKeyPress = (button: string) => {
-    console.log('Button pressed', button);
+    // console.log('Button pressed', button);
 
     /**
      * If you want to handle the shift and caps lock buttons

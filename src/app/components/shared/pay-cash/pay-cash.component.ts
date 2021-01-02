@@ -11,7 +11,7 @@ export class PayCashComponent implements OnInit, OnDestroy {
   totalCost: number;
   private subscription: Subscription = new Subscription();
 
-  constructor(private shareData: ShareDataService) { }
+  constructor(private shareDataService: ShareDataService) { }
 
   ngOnInit() {
     this.subscribeTotalCost();
@@ -24,9 +24,9 @@ export class PayCashComponent implements OnInit, OnDestroy {
   /**
    * Recive total cost from sale component
    */
-  subscribeTotalCost() {
+  private subscribeTotalCost() {
     this.subscription.add(
-      this.shareData.currentTotalCost.subscribe(
+      this.shareDataService.currentTotalCost.subscribe(
         totalCost => {
           this.totalCost = totalCost;
           console.log('pay-cash', this.totalCost);
