@@ -11,8 +11,8 @@
     "clean": "rimraf ./dist",
     "build:prod": "ng build --prod",
     "test": "ng test",
-    "test:watch": "ng test",
-    "build:ci": "npm run clean && npm run test && npm run build:prod"
+    "build:ci": "npm run build:prod --sourceMap=false --base-href /calculate-change-money/",
+    "test:ci": "ng test -- --code-coverage=true --watch=false"
   },
   "private": true,
   "dependencies": {
