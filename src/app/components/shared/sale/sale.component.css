@@ -1,0 +1,24 @@
+input {
+  font-weight: bold;
+  width: 100%;
+  /* height: 46%; 
+  padding: 1.5rem;*/
+  font-size: 3vw;
+  border: none;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.input-box {
+  background-color: #fff;
+  padding: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.input-total {
+  outline: 0;
+}
+
+#border-bottom {
+  border-bottom: #40bbc8 6px double;
+}
