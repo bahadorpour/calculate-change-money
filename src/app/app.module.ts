@@ -9,6 +9,7 @@ import { PayCashComponent } from './components/shared/pay-cash/pay-cash.componen
 import { SaleComponent } from './components/shared/sale/sale.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CommingSoonComponent } from './components/comming-soon/comming-soon.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CommingSoonComponent } from './components/comming-soon/comming-soon.com
   ],
   imports: [
     BrowserModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
