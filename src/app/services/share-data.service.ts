@@ -15,8 +15,12 @@ export class ShareDataService {
   private totalCostSource = new BehaviorSubject<number>(0);
   currentTotalCost = this.totalCostSource.asObservable(); // get an observable from behavior subject
 
-  private numKeyboardSource = new BehaviorSubject<string>('');
+  private numKeyboardSource = new BehaviorSubject<number>(0);
   currentKeyboardInput = this.numKeyboardSource.asObservable();
+
+
+  private cashSource = new BehaviorSubject<number>(0);
+  currentCash = this.cashSource.asObservable();
 
   constructor() { }
 
@@ -32,7 +36,33 @@ export class ShareDataService {
   * Send numeric keyboard value to an observable using next() method
   * @param input keyboard input
   */
-  updateNumKeyboards(input: string) {
+  updateNumKeyboards(input: number) {
     this.numKeyboardSource.next(input);
   }
+
+  /**
+ * Send numeric keyboard value to an observable using next() method
+ * @param cash keyboard input
+ */
+  updateCash(cash: number) {
+    this.cashSource.next(cash);
+  }
+
+  /**
+ * format numbers to locale with currency format
+ * German uses comma as decimal separator and period for thousands
+ * @param number given number
+ * @returns A string with a language-sensitive representation of the given number
+ */
+  convertNumToLocale(num: number): string {
+    return num.toLocaleString(
+      'de-DE',
+      {
+        style: 'currency',
+        currency: 'EUR'
+      });
+  }
+
+
+
 }

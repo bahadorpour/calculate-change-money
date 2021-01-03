@@ -10,35 +10,24 @@ import { ShareDataService } from 'src/app/services/share-data.service';
 export class SaleComponent implements OnInit, OnDestroy {
   randomNumber: number; // a random number for total cost
   totalCost: string;
+  cash;
   private subscription: Subscription = new Subscription();
 
-  constructor(private shareDataService: ShareDataService) {
-    this.randomNumber = this.getRandomFloatInclusive(1, 100); // TO DO: change to 100000
-    this.totalCost = this.convertNumToLocale(this.randomNumber);
+  constructor(
+    private shareDataService: ShareDataService
+  ) {
+    this.randomNumber = this.getRandomFloatInclusive(1, 100);
+    this.totalCost = this.shareDataService.convertNumToLocale(this.randomNumber);
     this.shareDataService.updateTotalCost(this.randomNumber);
   }
 
   ngOnInit() {
     this.subscribeKeyboardInput();
+    this.subscribeCash();
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
-  }
-
-  /**
-   * format numbers to locale with currency format
-   * German uses comma as decimal separator and period for thousands
-   * @param number given number
-   * @returns A string with a language-sensitive representation of the given number
-   */
-  private convertNumToLocale(num: number): string {
-    return num.toLocaleString(
-      'de-DE',
-      {
-        style: 'currency',
-        currency: 'EUR'
-      });
   }
 
   /**
@@ -55,13 +44,27 @@ export class SaleComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Recive total cost from sale component
+   * 
    */
   private subscribeKeyboardInput() {
     this.subscription.add(
       this.shareDataService.currentKeyboardInput.subscribe(
         input => {
-          console.log('inputttt', input);
+          this.cash = input;
+          console.log('keyboard', input);
+        })
+    );
+  }
+
+  /**
+   * 
+   */
+  private subscribeCash() {
+    this.subscription.add(
+      this.shareDataService.currentCash.subscribe(
+        cash => {
+          this.cash = cash;
+          console.log('cash', cash);
         })
     );
   }
