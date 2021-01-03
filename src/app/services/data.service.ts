@@ -11,28 +11,28 @@ export class DataService {
     this.checkoutButtons = [
       {
         id: 1,
-        route: "cash",
-        label: "Bar"
+        route: 'cash',
+        label: 'Bar'
       },
       {
         id: 2,
-        route: "electronicCash",
-        label: "EC"
+        route: 'electronicCash',
+        label: 'EC'
       },
       {
         id: 3,
-        route: "creditCard",
-        label: "Kreditkarte"
+        route: 'creditCard',
+        label: 'Kreditkarte'
       },
       {
         id: 4,
-        route: "voucher",
-        label: "gutschein"
+        route: 'voucher',
+        label: 'gutschein'
       },
       {
         id: 5,
-        route: "others",
-        label: "Sonstige"
+        route: 'others',
+        label: 'Sonstige'
       }
     ];
   }
