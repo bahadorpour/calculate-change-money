@@ -2,28 +2,6 @@
   Theme: keyboard grayTheme
 */
 
-/* .simple-keyboard.myTheme1 {
-  background-color: #3f4f4f;
-  border-radius: 0;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-}
-
-.simple-keyboard.myTheme1 .hg-button {
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #3f4f4f;
-  color: white;
-}
-
-.simple-keyboard.myTheme1 .hg-button:active {
-  background: #e5e5e7;
-  color: #000;
-}
- */
-
 #root .simple-keyboard.grayTheme+.simple-keyboard-preview {
   background: rgb(63, 79, 79);
 }
@@ -35,17 +13,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #647272;
+  background-color: #647272;
   color: #fff;
-  font-size: 200%;
+  font-size: 170%;
 }
 
 .simple-keyboard.grayTheme .hg-button:active {
-  background: #eee;
+  background-color: #eee;
   color: #3f4f4f;
 }
 
 .hg-theme-default {
   background-color: #3f4f4f;
-  width: 150%;
 }
