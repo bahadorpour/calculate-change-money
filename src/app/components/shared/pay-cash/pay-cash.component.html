@@ -1,10 +1,13 @@
-<div class="row justify-content-center align-items-center bg-dark-gray py-3">
-  <div class="col-sm-4">
+<div class="row bg-dark-gray p-3">
+  <div class="col-sm-3 offset-sm-3 align-self-center">
     <div class="row" *ngFor="let value of eruoPymentButtons; let index=index">
       <div class="col-12 bg-gray py-2 mb-1" (click)="selectedButton(index)">{{value}}</div>
     </div>
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-4 align-self-center">
     <app-numeric-keyboard></app-numeric-keyboard>
+  </div>
+  <div class="align-self-end ml-auto">
+    <button class="btn shadow-none btn-pay" (click)="onPayCash()">Zahlen</button>
   </div>
 </div>

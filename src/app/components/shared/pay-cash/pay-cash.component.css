@@ -1,0 +1,29 @@
+.btn-pay {
+  color: #fff;
+  background-color: #19bcc3;
+  border-color: #19bcc3;
+  margin: auto 0.15rem;
+  border-radius: initial;
+  width: 8rem;
+}
+
+.btn-pay:not(:disabled):not(.disabled).active:focus, .btn-pay:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, .5);
+}
+
+.btn-pay:not(:disabled):not(.disabled).active, .btn-pay:not(:disabled):not(.disabled):active {
+  color: #fff;
+  background-color: #138d91;
+  border-color: #19bcc3;
+}
+
+.btn-pay.focus, .btn-pay:focus {
+  color: #fff;
+  background-color: #19bcc3;
+}
+
+.btn-pay:hover {
+  color: #19bcc3;
+  background-color: #fff;
+  border-color: #19bcc3;
+}

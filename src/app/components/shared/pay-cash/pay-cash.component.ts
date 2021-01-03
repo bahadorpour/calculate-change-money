@@ -84,4 +84,8 @@ export class PayCashComponent implements OnInit, OnDestroy {
       this.eruoPymentButtons.push(this.shareDataService.convertNumToLocale(element));
     });
   }
+
+  onPayCash() {
+
+  }
 }
