@@ -18,9 +18,9 @@ export class PayCashComponent implements OnInit, OnDestroy {
   constructor(private shareDataService: ShareDataService) {
     this.paymentButtons = [];
     this.eruoPymentButtons = [];
-    this.shareDataService.currentKeyboardInput.subscribe(
-      input => {
-      })
+    /*  this.shareDataService.currentKeyboardInput.subscribe(
+       input => {
+       }) */
   }
 
   ngOnInit() {
@@ -51,14 +51,14 @@ export class PayCashComponent implements OnInit, OnDestroy {
     this.numericKeyboardComponent.keyboard.setInput(this.paymentButtons[index].toString());
   }
 
-  calculateAmounts(number) {
+  calculateAmounts(num: number) {
 
-    this.paymentButtons[4] = number;
+    this.paymentButtons[4] = num;
 
-    if (number != Math.ceil(number)) {
-      this.paymentButtons[3] = Math.ceil(number);
+    if (num !== Math.ceil(num)) {
+      this.paymentButtons[3] = Math.ceil(num);
     } else {
-      this.paymentButtons[3] = number + 1;
+      this.paymentButtons[3] = num + 1;
     }
 
     if (this.paymentButtons[3] % 10 === 0) {
@@ -68,12 +68,12 @@ export class PayCashComponent implements OnInit, OnDestroy {
 
     }
 
-    var index = 0;
+    let index = 0;
     while (index <= this.paymentButtons[2]) {
-      index = index + 10
+      index = index + 10;
     }
-    this.paymentButtons[1] = (index)
-    this.paymentButtons[0] = ((10 ** ((this.paymentButtons[1] + '').length)))
+    this.paymentButtons[1] = (index);
+    this.paymentButtons[0] = ((10 ** ((this.paymentButtons[1] + '').length)));
 
     console.log(this.paymentButtons);
   }

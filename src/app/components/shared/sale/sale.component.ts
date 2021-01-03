@@ -44,7 +44,7 @@ export class SaleComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * 
+   *
    */
   private subscribeKeyboardInput() {
     this.subscription.add(
@@ -57,7 +57,7 @@ export class SaleComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * 
+   *
    */
   private subscribeCash() {
     this.subscription.add(
