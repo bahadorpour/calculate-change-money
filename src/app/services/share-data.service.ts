@@ -49,20 +49,18 @@ export class ShareDataService {
   }
 
   /**
-   * format numbers to locale with currency format
+   * format numbers to  currency format
    * German uses comma as decimal separator and period for thousands
    * @param number given number
    * @returns A string with a language-sensitive representation of the given number
    */
-  convertNumToLocale(num: number): string {
-    return num.toLocaleString(
+  convertNumToEuro(num: number): string {
+    return new Intl.NumberFormat(
       'de-DE',
       {
         style: 'currency',
         currency: 'EUR'
-      });
+      }
+    ).format(num)
   }
-
-
-
 }

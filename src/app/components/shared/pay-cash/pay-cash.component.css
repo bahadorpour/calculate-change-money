@@ -1,7 +1,7 @@
 .btn-pay {
   color: #fff;
   background-color: #19bcc3;
-  border-color: #19bcc3;
+  border: #fff solid 4px;
   margin: auto 0.15rem;
   border-radius: initial;
   width: 8rem;

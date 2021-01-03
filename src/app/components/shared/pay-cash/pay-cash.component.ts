@@ -40,7 +40,7 @@ export class PayCashComponent implements OnInit, OnDestroy {
         totalCost => {
           this.totalCost = totalCost;
           this.calculateAmounts(totalCost);
-          this.convertNumToLocale(this.paymentButtons);
+          this.convertNumToEuro(this.paymentButtons);
         })
     );
   }
@@ -78,10 +78,10 @@ export class PayCashComponent implements OnInit, OnDestroy {
     console.log(this.paymentButtons);
   }
 
-  convertNumToLocale(nums: number[]) {
+  convertNumToEuro(nums: number[]) {
     this.eruoPymentButtons = [];
     nums.forEach(element => {
-      this.eruoPymentButtons.push(this.shareDataService.convertNumToLocale(element));
+      this.eruoPymentButtons.push(this.shareDataService.convertNumToEuro(element));
     });
   }
 

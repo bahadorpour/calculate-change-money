@@ -17,7 +17,7 @@ export class SaleComponent implements OnInit, OnDestroy {
     private shareDataService: ShareDataService
   ) {
     this.randomNumber = this.getRandomFloatInclusive(1, 100);
-    this.totalCost = this.shareDataService.convertNumToLocale(this.randomNumber);
+    this.totalCost = this.shareDataService.convertNumToEuro(this.randomNumber);
     this.shareDataService.updateTotalCost(this.randomNumber);
   }
 
