@@ -10,6 +10,7 @@ import { SaleComponent } from './components/shared/sale/sale.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CommingSoonComponent } from './components/comming-soon/comming-soon.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AppRoutingModule } from './app-routing.module';
     PayCashComponent,
     NumericKeyboardComponent,
     CheckoutComponent,
-    CommingSoonComponent
+    CommingSoonComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
