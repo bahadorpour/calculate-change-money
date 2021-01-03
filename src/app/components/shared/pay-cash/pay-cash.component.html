@@ -1,6 +1,10 @@
-<div class="row justify-content-center">
-  <div class="col-auto"> test</div>
-  <div class="col-auto">
+<div class="row justify-content-center align-items-center">
+  <div class="col-sm-4">
+    <div class="row" *ngFor="let value of eruoPymentButtons; let index=index">
+      <div class="col-12 bg-gray py-2 mb-1" (click)="selectedButton(index)">{{value}}</div>
+    </div>
+  </div>
+  <div class="col-sm-4">
     <app-numeric-keyboard></app-numeric-keyboard>
   </div>
 </div>

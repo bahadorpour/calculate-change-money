@@ -7,6 +7,8 @@ import { PaymentAmountComponent } from './components/payment-amount/payment-amou
 import { NumericKeyboardComponent } from './components/shared/numeric-keyboard/numeric-keyboard.component';
 import { PayCashComponent } from './components/shared/pay-cash/pay-cash.component';
 import { SaleComponent } from './components/shared/sale/sale.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { CommingSoonComponent } from './components/comming-soon/comming-soon.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { SaleComponent } from './components/shared/sale/sale.component';
     PaymentAmountComponent,
     SaleComponent,
     PayCashComponent,
-    NumericKeyboardComponent
+    NumericKeyboardComponent,
+    CheckoutComponent,
+    CommingSoonComponent
   ],
   imports: [
     BrowserModule,

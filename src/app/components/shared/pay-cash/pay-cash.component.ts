@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ShareDataService } from 'src/app/services/share-data.service';
+import { NumericKeyboardComponent } from '../numeric-keyboard/numeric-keyboard.component';
 
 @Component({
   selector: 'app-pay-cash',
@@ -9,9 +10,18 @@ import { ShareDataService } from 'src/app/services/share-data.service';
 })
 export class PayCashComponent implements OnInit, OnDestroy {
   totalCost: number;
+  paymentButtons: number[];
+  eruoPymentButtons: string[];
   private subscription: Subscription = new Subscription();
+  @ViewChild(NumericKeyboardComponent, { static: false }) private numericKeyboardComponent: NumericKeyboardComponent;
 
-  constructor(private shareDataService: ShareDataService) { }
+  constructor(private shareDataService: ShareDataService) {
+    this.paymentButtons = [];
+    this.eruoPymentButtons = [];
+    this.shareDataService.currentKeyboardInput.subscribe(
+      input => {
+      })
+  }
 
   ngOnInit() {
     this.subscribeTotalCost();
@@ -29,8 +39,49 @@ export class PayCashComponent implements OnInit, OnDestroy {
       this.shareDataService.currentTotalCost.subscribe(
         totalCost => {
           this.totalCost = totalCost;
-          console.log('pay-cash', this.totalCost);
+          this.calculateAmounts(totalCost);
+          this.convertNumToLocale(this.paymentButtons);
         })
     );
+  }
+
+  selectedButton(index: number) {
+    console.log('bi eruo', this.paymentButtons[index]);
+    this.shareDataService.updateCash(this.paymentButtons[index]);
+    this.numericKeyboardComponent.keyboard.setInput(this.paymentButtons[index].toString());
+  }
+
+  calculateAmounts(number) {
+
+    this.paymentButtons[4] = number;
+
+    if (number != Math.ceil(number)) {
+      this.paymentButtons[3] = Math.ceil(number);
+    } else {
+      this.paymentButtons[3] = number + 1;
+    }
+
+    if (this.paymentButtons[3] % 10 === 0) {
+      this.paymentButtons[2] = this.paymentButtons[3] + 10;
+    } else {
+      this.paymentButtons[2] = (5 - (this.paymentButtons[3] % 5)) + this.paymentButtons[3];
+
+    }
+
+    var index = 0;
+    while (index <= this.paymentButtons[2]) {
+      index = index + 10
+    }
+    this.paymentButtons[1] = (index)
+    this.paymentButtons[0] = ((10 ** ((this.paymentButtons[1] + '').length)))
+
+    console.log(this.paymentButtons);
+  }
+
+  convertNumToLocale(nums: number[]) {
+    this.eruoPymentButtons = [];
+    nums.forEach(element => {
+      this.eruoPymentButtons.push(this.shareDataService.convertNumToLocale(element));
+    });
   }
 }

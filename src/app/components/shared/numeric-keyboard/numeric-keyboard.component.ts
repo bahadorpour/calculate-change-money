@@ -33,14 +33,16 @@ export class NumericKeyboardComponent implements AfterViewInit {
       },
       display: {
         '{bksp}': '⌫'
-      }
+      },
+      maxLength: 8
     });
   }
 
   onChange = (input: string) => {
     this.value = input;
-    this.shareDataService.updateNumKeyboards(this.value);
-    // console.log('Input changed', input);
+    const tempValue = (input !== '') ? parseFloat(input) : 0;
+    this.shareDataService.updateNumKeyboards(tempValue);
+    console.log('Input changed', tempValue);
   }
 
   onKeyPress = (button: string) => {

@@ -2,9 +2,9 @@
 <div class="row">
   <form class="col-6 mx-auto">
     <div class="row input-box justify-content-center">
-      <label for="total" class="col-12 text-left text-truncate">Zu Zahlen</label>
+      <label for="totalCost" class="col-12 text-left text-truncate">Zu Zahlen</label>
       <div class="col-12">
-        <input readonly class="input input-total" id="total" name="total" [value]="totalCost">
+        <input readonly class="input input-totalCost" id="totalCost" name="totalCost" [value]="totalCost">
       </div>
       <div id="border-bottom" [ngStyle]="{'width': ((totalCost.length)* 2) + 'vw'}"></div>
     </div>
@@ -12,7 +12,7 @@
     <div class="row input-box justify-content-center">
       <label for="cash" class="col-12 text-left text-truncate">Gegeben</label>
       <div class="col-12">
-        <input type="text" class="input" id="cash" name="cash" placeholder="Gegeben">
+        <input type="text" class="input" id="cash" name="cash" [value]="cash" placeholder="Gegeben">
       </div>
     </div>
   </form>
