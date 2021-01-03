@@ -1,0 +1,29 @@
+.btn-checkout:not(:disabled):not(.disabled).active:focus, .btn-checkout:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, .5);
+}
+
+.btn-checkout:not(:disabled):not(.disabled).active, .btn-checkout:not(:disabled):not(.disabled):active {
+  color: #fff;
+  background-color: #3f4f4f;
+  border-color: #3f4f4f;
+}
+
+.btn-checkout.focus, .btn-checkout:focus {
+  color: #fff;
+  background-color: #3f4f4f;
+}
+
+.btn-checkout:hover {
+  color: #fff;
+  background-color: #3f4f4f;
+  border-color: #3f4f4f;
+}
+
+.btn-checkout {
+  color: #000;
+  background-color: #c3c7c8;
+  border-color: #c3c7c8;
+  margin: auto 0.15rem;
+  border-radius: initial;
+  width: 8rem;
+}
