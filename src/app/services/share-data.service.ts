@@ -15,7 +15,7 @@ export class ShareDataService {
   private totalCostSource = new BehaviorSubject<number>(0);
   currentTotalCost = this.totalCostSource.asObservable(); // get an observable from behavior subject
 
-  private numKeyboardSource = new BehaviorSubject<number>(0);
+  private numKeyboardSource = new BehaviorSubject<string>('');
   currentKeyboardInput = this.numKeyboardSource.asObservable();
 
 
@@ -36,7 +36,7 @@ export class ShareDataService {
    * Send numeric keyboard value to an observable using next() method
    * @param input keyboard input
    */
-  updateNumKeyboards(input: number) {
+  updateNumKeyboards(input: string) {
     this.numKeyboardSource.next(input);
   }
 

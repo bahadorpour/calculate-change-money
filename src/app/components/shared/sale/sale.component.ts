@@ -10,7 +10,7 @@ import { ShareDataService } from 'src/app/services/share-data.service';
 export class SaleComponent implements OnInit, OnDestroy {
   randomNumber: number; // a random number for total cost
   totalCost: string;
-  cash;
+  cash: string;
   private subscription: Subscription = new Subscription();
 
   constructor(
@@ -50,8 +50,11 @@ export class SaleComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.shareDataService.currentKeyboardInput.subscribe(
         input => {
-          this.cash = input;
-          console.log('keyboard', input);
+          if (input !== '') {
+            this.cash = this.convertToEuroCent(input);
+          } else {
+            this.cash = this.shareDataService.convertNumToEuro(0)
+          }
         })
     );
   }
@@ -63,9 +66,18 @@ export class SaleComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.shareDataService.currentCash.subscribe(
         cash => {
-          this.cash = cash;
-          console.log('cash', cash);
+          this.cash = cash.toString();
+          //  console.log('cash', cash);
         })
     );
+  }
+  private convertToEuroCent(input: string): string {
+    let euro;
+    let cent;
+    euro = input.substring(0, input.length - 2);
+    cent = input.substr(input.length - 2);
+    euro = (euro !== '') ? parseInt(euro, 10) : 0;
+    cent = (cent !== '') ? parseInt(cent, 10) * 0.01 : 0;
+    return this.shareDataService.convertNumToEuro(euro + cent);
   }
 }

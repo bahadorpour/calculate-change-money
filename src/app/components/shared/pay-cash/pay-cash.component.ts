@@ -45,40 +45,56 @@ export class PayCashComponent implements OnInit, OnDestroy {
     );
   }
 
-  selectedButton(index: number) {
-    console.log('bi eruo', this.paymentButtons[index]);
-    this.shareDataService.updateCash(this.paymentButtons[index]);
-    this.numericKeyboardComponent.keyboard.setInput(this.paymentButtons[index].toString());
+  selectedButton(value, index: number) {
+    this.shareDataService.updateCash(value);
+    this.numericKeyboardComponent.keyboard.setInput((this.paymentButtons[index] * 100).toString());
   }
 
   calculateAmounts(num: number) {
+    let amount: number;
 
-    this.paymentButtons[4] = num;
+    for (let index = 4; index > -1; index--) {
+      switch (index) {
+        case 4:
+          amount = num;
+          break;
+        case 3:
+          if (num !== Math.ceil(num)) {
+            amount = Math.ceil(num);
+          } else {
+            amount = num + 1;
+          }
+          break;
+        case 2:
+          if (this.paymentButtons[3] % 10 === 0) {
+            amount = this.paymentButtons[3] + 10;
+          } else {
+            amount = (5 - (this.paymentButtons[3] % 5)) + this.paymentButtons[3];
 
-    if (num !== Math.ceil(num)) {
-      this.paymentButtons[3] = Math.ceil(num);
-    } else {
-      this.paymentButtons[3] = num + 1;
+          }
+          break;
+        case 1:
+          let i = 0;
+          while (i <= this.paymentButtons[2]) {
+            i = i + 10;
+          }
+          amount = i;
+          break;
+
+        case 0:
+          amount = ((10 ** ((this.paymentButtons[1] + '').length)));
+          break;
+      }
+      this.paymentButtons[index] = amount;
     }
-
-    if (this.paymentButtons[3] % 10 === 0) {
-      this.paymentButtons[2] = this.paymentButtons[3] + 10;
-    } else {
-      this.paymentButtons[2] = (5 - (this.paymentButtons[3] % 5)) + this.paymentButtons[3];
-
-    }
-
-    let index = 0;
-    while (index <= this.paymentButtons[2]) {
-      index = index + 10;
-    }
-    this.paymentButtons[1] = (index);
-    this.paymentButtons[0] = ((10 ** ((this.paymentButtons[1] + '').length)));
-
     console.log(this.paymentButtons);
   }
 
-  convertNumToEuro(nums: number[]) {
+  /**
+   * format numbers of buttons as currency string
+   * @param nums float number
+   */
+  convertNumToEuro(nums: number[]): void {
     this.eruoPymentButtons = [];
     nums.forEach(element => {
       this.eruoPymentButtons.push(this.shareDataService.convertNumToEuro(element));
