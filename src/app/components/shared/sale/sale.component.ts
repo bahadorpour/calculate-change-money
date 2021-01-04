@@ -1,3 +1,7 @@
+/**
+ * SaleComponent : Show total cost and cash inuts
+ * Author: Mojdeh Bahadorpour
+ */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ShareDataService } from 'src/app/services/share-data.service';
@@ -8,22 +12,21 @@ import { ShareDataService } from 'src/app/services/share-data.service';
   styleUrls: ['./sale.component.css']
 })
 export class SaleComponent implements OnInit, OnDestroy {
-  randomNumber: number; // a random number for total cost
   totalCost: string;
   cash: string;
   private subscription: Subscription = new Subscription();
 
-  constructor(
-    private shareDataService: ShareDataService
-  ) {
-    this.randomNumber = this.getRandomFloatInclusive(1, 100);
-    this.totalCost = this.shareDataService.convertNumToEuro(this.randomNumber);
-    this.shareDataService.updateTotalCost(this.randomNumber);
+  constructor(private shareDataService: ShareDataService) {
+    let randomNumber: number; // create a random number for total cost
+
+    randomNumber = this.getRandomFloat(1, 1000);
+    this.shareDataService.updateTotalCost(randomNumber);
+    this.totalCost = this.shareDataService.convertNumToEuro(randomNumber);
   }
 
   ngOnInit() {
-    this.subscribeKeyboardInput();
     this.subscribeCash();
+    this.subscribeKeyboardInput();
   }
 
   ngOnDestroy() {
@@ -35,7 +38,7 @@ export class SaleComponent implements OnInit, OnDestroy {
    * @param min minimum number
    * @param max maximum number
    */
-  private getRandomFloatInclusive(min: number, max: number): number {
+  private getRandomFloat(min: number, max: number): number {
     min = Math.ceil(min);
     max = Math.floor(max);
     const randomNumber = Math.random() * (max - min + 1) + min;
@@ -44,40 +47,54 @@ export class SaleComponent implements OnInit, OnDestroy {
   }
 
   /**
-   *
-   */
-  private subscribeKeyboardInput() {
-    this.subscription.add(
-      this.shareDataService.currentKeyboardInput.subscribe(
-        input => {
-          if (input !== '') {
-            this.cash = this.convertToEuroCent(input);
-          } else {
-            this.cash = this.shareDataService.convertNumToEuro(0)
-          }
-        })
-    );
-  }
-
-  /**
-   *
-   */
+ * set cash amount from buttons
+ */
   private subscribeCash() {
     this.subscription.add(
       this.shareDataService.currentCash.subscribe(
         cash => {
-          this.cash = cash.toString();
-          //  console.log('cash', cash);
-        })
+          this.cash = cash;
+        }
+      )
     );
   }
-  private convertToEuroCent(input: string): string {
-    let euro;
-    let cent;
-    euro = input.substring(0, input.length - 2);
-    cent = input.substr(input.length - 2);
-    euro = (euro !== '') ? parseInt(euro, 10) : 0;
-    cent = (cent !== '') ? parseInt(cent, 10) * 0.01 : 0;
-    return this.shareDataService.convertNumToEuro(euro + cent);
+
+  /**
+   * set cash amount from keyboard
+   */
+  private subscribeKeyboardInput() {
+    this.subscription.add(
+      this.shareDataService.currentKeyboardInput.subscribe(
+        keyboardInput => {
+          // Convert keyboard input to Float  Euro Cent format . Ex. 4433 to 44.33 €
+          this.cash = this.shareDataService.convertNumToEuro(
+            this.covertEuroCentFormatToNum(keyboardInput)
+          );
+          this.shareDataService.floatCash = this.covertEuroCentFormatToNum(keyboardInput);
+
+        }
+      )
+    );
+  }
+
+  /**
+   * Convert keyboard input to Float --> Ex. 4433 to 44.33
+   * @param input : input from keyboard
+   */
+  private covertEuroCentFormatToNum(input: string): number {
+    let cashNum: number;
+    if (input !== '') {
+      let euro: number | string;
+      let cent: number | string;
+      euro = input.substring(0, input.length - 2);
+      cent = input.substr(input.length - 2);
+      euro = (euro !== '') ? parseInt(euro, 10) : 0;
+      cent = (cent !== '') ? parseInt(cent, 10) * 0.01 : 0;
+      cashNum = euro + cent;
+
+    } else {
+      cashNum = 0;
+    }
+    return cashNum;
   }
 }

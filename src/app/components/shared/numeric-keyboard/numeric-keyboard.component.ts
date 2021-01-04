@@ -40,7 +40,7 @@ export class NumericKeyboardComponent implements AfterViewInit {
 
   onChange = (input: string) => {
     this.value = input;
-    this.shareDataService.updateNumKeyboards(input);
+    this.shareDataService.updateNumKeyboard(input);
   }
 
   onKeyPress = (button: string) => {

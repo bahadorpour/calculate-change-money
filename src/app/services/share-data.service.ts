@@ -19,10 +19,14 @@ export class ShareDataService {
   currentKeyboardInput = this.numKeyboardSource.asObservable();
 
 
-  private cashSource = new BehaviorSubject<number>(0);
+  private cashSource = new BehaviorSubject<string>('');
   currentCash = this.cashSource.asObservable();
 
-  constructor() { }
+  cash: number;
+
+  constructor() {
+    this.floatCash = 0;
+  }
 
   /**
    * Send totalCost to an observable using next() method
@@ -36,7 +40,7 @@ export class ShareDataService {
    * Send numeric keyboard value to an observable using next() method
    * @param input keyboard input
    */
-  updateNumKeyboards(input: string) {
+  updateNumKeyboard(input: string) {
     this.numKeyboardSource.next(input);
   }
 
@@ -44,7 +48,7 @@ export class ShareDataService {
    * Send numeric keyboard value to an observable using next() method
    * @param cash keyboard input
    */
-  updateCash(cash: number) {
+  updateCash(cash: string) {
     this.cashSource.next(cash);
   }
 
@@ -63,4 +67,16 @@ export class ShareDataService {
       }
     ).format(num)
   }
+
+  /** set float amount of cash */
+  public set floatCash(cash: number) {
+    this.cash = cash;
+  }
+
+  /** get float amount of cash */
+  public get floatCash(): number {
+    return this.cash
+  }
+
+
 }

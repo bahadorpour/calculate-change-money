@@ -10,6 +10,8 @@ import { NumericKeyboardComponent } from '../numeric-keyboard/numeric-keyboard.c
 })
 export class PayCashComponent implements OnInit, OnDestroy {
   totalCost: number;
+  cash: number;
+
   paymentButtons: number[];
   eruoPymentButtons: string[];
   private subscription: Subscription = new Subscription();
@@ -32,7 +34,7 @@ export class PayCashComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Recive total cost from sale component
+   * Receive total cost from sale component
    */
   private subscribeTotalCost() {
     this.subscription.add(
@@ -40,17 +42,16 @@ export class PayCashComponent implements OnInit, OnDestroy {
         totalCost => {
           this.totalCost = totalCost;
           this.calculateAmounts(totalCost);
-          this.convertNumToEuro(this.paymentButtons);
+          this.convertNumsToEuro(this.paymentButtons);
         })
     );
   }
 
-  selectedButton(value, index: number) {
-    this.shareDataService.updateCash(value);
-    this.numericKeyboardComponent.keyboard.setInput((this.paymentButtons[index] * 100).toString());
-  }
-
-  calculateAmounts(num: number) {
+  /**
+ * create suggested amouts for buttons according to totalCost
+ * @param num 
+ */
+  private calculateAmounts(num: number) {
     let amount: number;
 
     for (let index = 4; index > -1; index--) {
@@ -58,50 +59,48 @@ export class PayCashComponent implements OnInit, OnDestroy {
         case 4:
           amount = num;
           break;
-        case 3:
-          if (num !== Math.ceil(num)) {
-            amount = Math.ceil(num);
-          } else {
-            amount = num + 1;
-          }
-          break;
-        case 2:
-          if (this.paymentButtons[3] % 10 === 0) {
-            amount = this.paymentButtons[3] + 10;
-          } else {
-            amount = (5 - (this.paymentButtons[3] % 5)) + this.paymentButtons[3];
 
-          }
+        case 3:
+          amount = (num !== Math.ceil(num)) ? Math.ceil(num) : num + 1;
           break;
+
+        case 2:
+          amount = (10 - (this.paymentButtons[3] % 10)) + this.paymentButtons[3];
+          break;
+
         case 1:
-          let i = 0;
-          while (i <= this.paymentButtons[2]) {
-            i = i + 10;
-          }
-          amount = i;
+          amount = this.paymentButtons[2] * 2;
           break;
 
         case 0:
-          amount = ((10 ** ((this.paymentButtons[1] + '').length)));
+          amount = (10 ** ((this.paymentButtons[1] + '').length));
           break;
       }
       this.paymentButtons[index] = amount;
     }
-    console.log(this.paymentButtons);
   }
 
   /**
    * format numbers of buttons as currency string
    * @param nums float number
    */
-  convertNumToEuro(nums: number[]): void {
+  private convertNumsToEuro(nums: number[]): void {
     this.eruoPymentButtons = [];
     nums.forEach(element => {
       this.eruoPymentButtons.push(this.shareDataService.convertNumToEuro(element));
     });
   }
 
-  onPayCash() {
+  selectedButton(value, index: number) {
+    this.shareDataService.floatCash = this.paymentButtons[index];
+    this.shareDataService.updateCash(value);
+    this.numericKeyboardComponent.keyboard.setInput((this.paymentButtons[index] * 100).toString());
+  }
 
+  /**
+   * Calculate payment amount 
+   */
+  onPayCash() {
+    this.cash = this.shareDataService.floatCash;
   }
 }

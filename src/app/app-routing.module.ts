@@ -3,7 +3,6 @@
  * Author: Mojdeh Bahadorpour
  * Company: ITQ
  */
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
