@@ -6,13 +6,9 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { PaymentAmountComponent } from './components/payment-amount/payment-amount.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PayCashComponent } from './components/shared/pay-cash/pay-cash.component';
-import { SaleComponent } from './components/shared/sale/sale.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'cash', pathMatch: 'full' },
@@ -23,7 +19,7 @@ export const routes: Routes = [
   { path: 'voucher', redirectTo: 'comingSoon', pathMatch: 'full' },
   { path: 'others', redirectTo: 'comingSoon', pathMatch: 'full' },
 
-  { path: '**', component: NotFoundComponent } // Wildcard route for a 404 page
+  { path: '**', component: PageNotFoundComponent } // Wildcard route for a 404 page
 ];
 
 @NgModule({

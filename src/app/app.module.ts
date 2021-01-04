@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faLock, faPlus, faSortAmountDown, faTh } from '@fortawesome/free-solid-svg-icons';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PaymentAmountComponent } from './components/payment-amount/payment-amount.component';
 import { NumericKeyboardComponent } from './components/shared/numeric-keyboard/numeric-keyboard.component';
 import { PayCashComponent } from './components/shared/pay-cash/pay-cash.component';
 import { SaleComponent } from './components/shared/sale/sale.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
-import { AppRoutingModule } from './app-routing.module';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +20,8 @@ import { ComingSoonComponent } from './components/coming-soon/coming-soon.compon
     PayCashComponent,
     NumericKeyboardComponent,
     CheckoutComponent,
-    NotFoundComponent,
-    ComingSoonComponent
+    ComingSoonComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
