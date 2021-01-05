@@ -1,21 +1,16 @@
-input {
-  font-weight: bold;
-  width: 100%;
-  /* height: 46%; 
-  padding: 1.5rem;*/
-  font-size: 2.5vw;
-  border: none;
-  box-sizing: border-box;
-  text-align: center;
-}
-
 .input-box {
   background-color: #fff;
   padding: 1rem;
   margin-bottom: 0.5rem;
 }
 
-.input-totalCost {
+input {
+  font-weight: bold;
+  width: 100%;
+  font-size: 2.5vw;
+  border: none;
+  box-sizing: border-box;
+  text-align: center;
   outline: 0;
 }
 

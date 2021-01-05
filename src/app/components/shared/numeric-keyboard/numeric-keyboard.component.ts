@@ -29,28 +29,22 @@ export class NumericKeyboardComponent implements AfterViewInit {
       onKeyPress: button => this.onKeyPress(button),
       theme: 'hg-theme-default grayTheme',
       layout: {
-        default: ['7 8 9', '4 5 6', '1 2 3', '{bksp} 0 .']
+        default: ['7 8 9', '4 5 6', '1 2 3', '{bksp} 0']
       },
       display: {
         '{bksp}': '⌫'
       },
-      maxLength: 8
+      maxLength: 6
     });
   }
 
   onChange = (input: string) => {
     this.value = input;
-    const tempValue = (input !== '') ? parseFloat(input) : 0;
-    this.shareDataService.updateNumKeyboards(tempValue);
-    console.log('Input changed', tempValue);
+    this.shareDataService.updateNumKeyboard(input);
   }
 
   onKeyPress = (button: string) => {
-    // console.log('Button pressed', button);
-
-    /**
-     * If you want to handle the shift and caps lock buttons
-     */
+    // If you want to handle the shift and caps lock buttons
     if (button === '{shift}' || button === '{lock}') { this.handleShift(); }
   }
 

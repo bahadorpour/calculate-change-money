@@ -1,16 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
-
-/*
- * Base structure
- */
+/* Base structure */
 
 html, body {
   height: 100%;
 }
 
-/*
- * Globals
- */
+/* Globals */
 
 .bg-dark-gray {
   background-color: #3f4f4f;

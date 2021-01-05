@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ShareDataService } from 'src/app/services/share-data.service';
+import Swal from 'sweetalert2';
 import { NumericKeyboardComponent } from '../numeric-keyboard/numeric-keyboard.component';
 
 @Component({
@@ -10,6 +11,8 @@ import { NumericKeyboardComponent } from '../numeric-keyboard/numeric-keyboard.c
 })
 export class PayCashComponent implements OnInit, OnDestroy {
   totalCost: number;
+  cash: number;
+
   paymentButtons: number[];
   eruoPymentButtons: string[];
   private subscription: Subscription = new Subscription();
@@ -18,9 +21,6 @@ export class PayCashComponent implements OnInit, OnDestroy {
   constructor(private shareDataService: ShareDataService) {
     this.paymentButtons = [];
     this.eruoPymentButtons = [];
-    /*  this.shareDataService.currentKeyboardInput.subscribe(
-       input => {
-       }) */
   }
 
   ngOnInit() {
@@ -32,7 +32,7 @@ export class PayCashComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Recive total cost from sale component
+   * Receive total cost from sale component
    */
   private subscribeTotalCost() {
     this.subscription.add(
@@ -40,52 +40,57 @@ export class PayCashComponent implements OnInit, OnDestroy {
         totalCost => {
           this.totalCost = totalCost;
           this.calculateAmounts(totalCost);
-          this.convertNumToLocale(this.paymentButtons);
-        })
+          this.convertNumsToEuro(this.paymentButtons);
+        }
+      )
     );
   }
 
-  selectedButton(index: number) {
-    console.log('bi eruo', this.paymentButtons[index]);
-    this.shareDataService.updateCash(this.paymentButtons[index]);
-    this.numericKeyboardComponent.keyboard.setInput(this.paymentButtons[index].toString());
-  }
-
-  calculateAmounts(num: number) {
-
+  /**
+   * create suggested amouts for buttons according to totalCost
+   * @param num totalCost
+   */
+  private calculateAmounts(num: number) {
     this.paymentButtons[4] = num;
-
-    if (num !== Math.ceil(num)) {
-      this.paymentButtons[3] = Math.ceil(num);
-    } else {
-      this.paymentButtons[3] = num + 1;
-    }
-
-    if (this.paymentButtons[3] % 10 === 0) {
-      this.paymentButtons[2] = this.paymentButtons[3] + 10;
-    } else {
-      this.paymentButtons[2] = (5 - (this.paymentButtons[3] % 5)) + this.paymentButtons[3];
-
-    }
-
-    let index = 0;
-    while (index <= this.paymentButtons[2]) {
-      index = index + 10;
-    }
-    this.paymentButtons[1] = (index);
-    this.paymentButtons[0] = ((10 ** ((this.paymentButtons[1] + '').length)));
-
-    console.log(this.paymentButtons);
+    this.paymentButtons[3] = (num !== Math.ceil(num)) ? Math.ceil(num) : num + 1;
+    this.paymentButtons[2] = (10 - (this.paymentButtons[3] % 10)) + this.paymentButtons[3];
+    this.paymentButtons[1] = this.paymentButtons[2] * 2;
+    this.paymentButtons[0] = (10 ** ((this.paymentButtons[1] + '').length));
   }
 
-  convertNumToLocale(nums: number[]) {
+  /**
+   * format numbers of buttons as currency string
+   * @param nums float number
+   */
+  private convertNumsToEuro(nums: number[]): void {
     this.eruoPymentButtons = [];
     nums.forEach(element => {
-      this.eruoPymentButtons.push(this.shareDataService.convertNumToLocale(element));
+      this.eruoPymentButtons.push(this.shareDataService.convertNumToEuro(element));
     });
   }
 
-  onPayCash() {
+  /**
+   * Functionality of selected button
+   */
+  selectedButton(value: string, index: number) {
+    this.shareDataService.floatCash = this.paymentButtons[index];
+    this.shareDataService.updateCash(value);
+    this.numericKeyboardComponent.keyboard.setInput((this.paymentButtons[index] * 100).toString());
+  }
 
+  /**
+   * Calculate change amount and fire a sweet alert to inform the user
+   */
+  calculateChange() {
+    this.cash = this.shareDataService.floatCash;
+    const change = (this.cash - this.totalCost).toFixed(2);
+    Swal.fire({
+      icon: 'success',
+      title: '<strong class="text-success">' + change + '</strong>',
+      text: 'Der errechnete Zahlbetrag',
+      showCancelButton: false,
+      confirmButtonColor: '#19bcc3',
+      confirmButtonText: 'Bestätigt'
+    });
   }
 }

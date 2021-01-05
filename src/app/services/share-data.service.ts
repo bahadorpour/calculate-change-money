@@ -15,14 +15,18 @@ export class ShareDataService {
   private totalCostSource = new BehaviorSubject<number>(0);
   currentTotalCost = this.totalCostSource.asObservable(); // get an observable from behavior subject
 
-  private numKeyboardSource = new BehaviorSubject<number>(0);
+  private numKeyboardSource = new BehaviorSubject<string>('');
   currentKeyboardInput = this.numKeyboardSource.asObservable();
 
 
-  private cashSource = new BehaviorSubject<number>(0);
+  private cashSource = new BehaviorSubject<string>('');
   currentCash = this.cashSource.asObservable();
 
-  constructor() { }
+  cash: number;
+
+  constructor() {
+    this.floatCash = 0;
+  }
 
   /**
    * Send totalCost to an observable using next() method
@@ -36,7 +40,7 @@ export class ShareDataService {
    * Send numeric keyboard value to an observable using next() method
    * @param input keyboard input
    */
-  updateNumKeyboards(input: number) {
+  updateNumKeyboard(input: string) {
     this.numKeyboardSource.next(input);
   }
 
@@ -44,25 +48,35 @@ export class ShareDataService {
    * Send numeric keyboard value to an observable using next() method
    * @param cash keyboard input
    */
-  updateCash(cash: number) {
+  updateCash(cash: string) {
     this.cashSource.next(cash);
   }
 
   /**
-   * format numbers to locale with currency format
+   * format numbers to  currency format
    * German uses comma as decimal separator and period for thousands
    * @param number given number
    * @returns A string with a language-sensitive representation of the given number
    */
-  convertNumToLocale(num: number): string {
-    return num.toLocaleString(
+  convertNumToEuro(num: number): string {
+    return new Intl.NumberFormat(
       'de-DE',
       {
         style: 'currency',
         currency: 'EUR'
-      });
+      }
+    ).format(num);
   }
 
+  /** set float amount of cash */
+  public set floatCash(cash: number) {
+    this.cash = cash;
+  }
+
+  /** get float amount of cash */
+  public get floatCash(): number {
+    return this.cash;
+  }
 
 
 }
