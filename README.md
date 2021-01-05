@@ -1,7 +1,8 @@
-# Actions 
+# Calculate Change Money (Geldstueckelung) 🖥 🛍 ✅
+
+## Actions 
 <!-- [![build status](https://github.com/bahadorpour/calculate-change-money/workflows/Build/badge.svg)](https://github.com/bahadorpour/calculate-change-money/actions) -->
 
-# Calculate Change Money (Geldstueckelung) 🖥 🛍 ✅ 
 
 ## Documentation 📖
 
@@ -14,17 +15,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 * Run `ng serve` for a dev server
 * Visit [http://localhost:4200](http://localhost:4200)
 
-### Sweet alert
+### App structure
+![](assets/analysis.png)
 
-sweetalert2: A beautiful, responsive, customizable, accessible (wai-aria) replacement for javascript's popup boxes [Integrations with Angular](https://github.com/sweetalert2/ngx-sweetalert2).
-
-### Font Awesome
-
-FortAwesome: Get vector icons and social logos [Integrations with Angular](https://github.com/FortAwesome/angular-fontawesome).
-
-### Virtual Keyboard
-
-simple-keyboard: A Javascript Virtual Keyboard - Customizable, responsive and lightweight [Integrations with Angular](https://hodgef.com/simple-keyboard/).
+### Libraries and frameworks used:
++ [Bootstrap 4](https://getbootstrap.com/)
++ [Sweet alert](https://github.com/sweetalert2/ngx-sweetalert2) : A responsive, customizable, accessible (wai-aria) replacement for javascript's popup boxes .
++ [Font Awesome](https://github.com/FortAwesome/angular-fontawesome) : Vector icons and social logos.
++ [Simple-keyboard](https://hodgef.com/simple-keyboard/): A Javascript Virtual Keyboard - Customizable, responsive and lightweight.
 
 ## Further help 📋
 
