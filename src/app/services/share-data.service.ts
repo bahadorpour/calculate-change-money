@@ -65,7 +65,7 @@ export class ShareDataService {
         style: 'currency',
         currency: 'EUR'
       }
-    ).format(num)
+    ).format(num);
   }
 
   /** set float amount of cash */
@@ -75,7 +75,7 @@ export class ShareDataService {
 
   /** get float amount of cash */
   public get floatCash(): number {
-    return this.cash
+    return this.cash;
   }
 
 

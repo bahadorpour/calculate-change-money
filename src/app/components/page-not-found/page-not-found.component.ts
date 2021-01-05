@@ -1,5 +1,5 @@
 /**
- * PageNotFoundComponent: To display a 404 page with set up a wildcard route 
+ * PageNotFoundComponent: To display a 404 page with set up a wildcard route
  * Author: Mojdeh Bahadorpour
  */
 import { Component, OnInit } from '@angular/core';

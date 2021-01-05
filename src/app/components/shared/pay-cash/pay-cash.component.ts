@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ShareDataService } from 'src/app/services/share-data.service';
+import Swal from 'sweetalert2';
 import { NumericKeyboardComponent } from '../numeric-keyboard/numeric-keyboard.component';
 
 @Component({
@@ -20,9 +21,6 @@ export class PayCashComponent implements OnInit, OnDestroy {
   constructor(private shareDataService: ShareDataService) {
     this.paymentButtons = [];
     this.eruoPymentButtons = [];
-    /*  this.shareDataService.currentKeyboardInput.subscribe(
-       input => {
-       }) */
   }
 
   ngOnInit() {
@@ -43,41 +41,21 @@ export class PayCashComponent implements OnInit, OnDestroy {
           this.totalCost = totalCost;
           this.calculateAmounts(totalCost);
           this.convertNumsToEuro(this.paymentButtons);
-        })
+        }
+      )
     );
   }
 
   /**
- * create suggested amouts for buttons according to totalCost
- * @param num 
- */
+   * create suggested amouts for buttons according to totalCost
+   * @param num totalCost
+   */
   private calculateAmounts(num: number) {
-    let amount: number;
-
-    for (let index = 4; index > -1; index--) {
-      switch (index) {
-        case 4:
-          amount = num;
-          break;
-
-        case 3:
-          amount = (num !== Math.ceil(num)) ? Math.ceil(num) : num + 1;
-          break;
-
-        case 2:
-          amount = (10 - (this.paymentButtons[3] % 10)) + this.paymentButtons[3];
-          break;
-
-        case 1:
-          amount = this.paymentButtons[2] * 2;
-          break;
-
-        case 0:
-          amount = (10 ** ((this.paymentButtons[1] + '').length));
-          break;
-      }
-      this.paymentButtons[index] = amount;
-    }
+    this.paymentButtons[4] = num;
+    this.paymentButtons[3] = (num !== Math.ceil(num)) ? Math.ceil(num) : num + 1;
+    this.paymentButtons[2] = (10 - (this.paymentButtons[3] % 10)) + this.paymentButtons[3];
+    this.paymentButtons[1] = this.paymentButtons[2] * 2;
+    this.paymentButtons[0] = (10 ** ((this.paymentButtons[1] + '').length));
   }
 
   /**
@@ -91,16 +69,28 @@ export class PayCashComponent implements OnInit, OnDestroy {
     });
   }
 
-  selectedButton(value, index: number) {
+  /**
+   * Functionality of selected button
+   */
+  selectedButton(value: string, index: number) {
     this.shareDataService.floatCash = this.paymentButtons[index];
     this.shareDataService.updateCash(value);
     this.numericKeyboardComponent.keyboard.setInput((this.paymentButtons[index] * 100).toString());
   }
 
   /**
-   * Calculate payment amount 
+   * Calculate change amount and fire a sweet alert to inform the user
    */
-  onPayCash() {
+  calculateChange() {
     this.cash = this.shareDataService.floatCash;
+    const change = (this.cash - this.totalCost).toFixed(2);
+    Swal.fire({
+      icon: 'success',
+      title: '<strong class="text-success">' + change + '</strong>',
+      text: 'Der errechnete Zahlbetrag',
+      showCancelButton: false,
+      confirmButtonColor: '#19bcc3',
+      confirmButtonText: 'Bestätigt'
+    });
   }
 }

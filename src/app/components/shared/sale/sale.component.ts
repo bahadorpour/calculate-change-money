@@ -47,8 +47,8 @@ export class SaleComponent implements OnInit, OnDestroy {
   }
 
   /**
- * set cash amount from buttons
- */
+   * set cash amount from buttons
+   */
   private subscribeCash() {
     this.subscription.add(
       this.shareDataService.currentCash.subscribe(
