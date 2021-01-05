@@ -11,6 +11,7 @@ import { PaymentAmountComponent } from './components/payment-amount/payment-amou
 import { NumericKeyboardComponent } from './components/shared/numeric-keyboard/numeric-keyboard.component';
 import { PayCashComponent } from './components/shared/pay-cash/pay-cash.component';
 import { SaleComponent } from './components/shared/sale/sale.component';
+import { SaleTabsComponent } from './components/sale-tabs/sale-tabs.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SaleComponent } from './components/shared/sale/sale.component';
     NumericKeyboardComponent,
     CheckoutComponent,
     ComingSoonComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SaleTabsComponent
   ],
   imports: [
     BrowserModule,

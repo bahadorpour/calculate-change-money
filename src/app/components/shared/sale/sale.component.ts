@@ -14,6 +14,11 @@ import { ShareDataService } from 'src/app/services/share-data.service';
 export class SaleComponent implements OnInit, OnDestroy {
   totalCost: string;
   cash: string;
+  @Input('tabTitle') title: string;
+  @Input() active = false;
+  @Input() isCloseable = false;
+  @Input() template;
+  @Input() dataContext;
 
   private subscription: Subscription = new Subscription();
 
