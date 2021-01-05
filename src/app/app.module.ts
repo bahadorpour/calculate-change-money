@@ -29,7 +29,9 @@ import { SaleComponent } from './components/shared/sale/sale.component';
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  // register the dynamic components here
+  entryComponents: [SaleComponent]
 })
 export class AppModule {
   constructor(iconLibrary: FaIconLibrary) {

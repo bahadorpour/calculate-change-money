@@ -2,7 +2,7 @@
  * SaleComponent : Show total cost and cash inuts
  * Author: Mojdeh Bahadorpour
  */
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ShareDataService } from 'src/app/services/share-data.service';
 
@@ -14,6 +14,7 @@ import { ShareDataService } from 'src/app/services/share-data.service';
 export class SaleComponent implements OnInit, OnDestroy {
   totalCost: string;
   cash: string;
+
   private subscription: Subscription = new Subscription();
 
   constructor(private shareDataService: ShareDataService) {
