@@ -44,8 +44,6 @@ export class NumericKeyboardComponent implements AfterViewInit {
   }
 
   onKeyPress = (button: string) => {
-    // console.log('Button pressed', button);
-
     // If you want to handle the shift and caps lock buttons
     if (button === '{shift}' || button === '{lock}') { this.handleShift(); }
   }
