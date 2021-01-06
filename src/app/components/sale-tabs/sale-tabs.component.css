@@ -1,6 +1,5 @@
 .tab-close {
   cursor: pointer;
-  color: #3f4f4f;
 }
 
 .nav-item.active {
@@ -22,9 +21,13 @@
 
 .nav-tabs {
   border-bottom: none;
-  background-color: #3f4f4f;
   border-radius: 3px;
   margin-bottom: 1.5rem!important;
   padding: 0.5rem 0.5rem 0 0.5rem;
-  color: #e5e5e7;
+}
+
+.btn:hover {
+  color: #fff;
+  background-color: #3f4f4f;
+  border-color: #e5e5e7;
 }

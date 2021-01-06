@@ -6,14 +6,22 @@ html, body {
 
 /* Globals */
 
-.bg-dark-gray {
-  background-color: #3f4f4f;
-}
-
 .bg-gray {
   background-color: #647272;
 }
 
 .bg-light-gray {
   background-color: #e5e5e7;
+}
+
+.bg-dark-gray {
+  background-color: #3f4f4f;
+}
+
+.text-light-gray {
+  color: #e5e5e7;
+}
+
+.text-dark-gray {
+  color: #3f4f4f;
 }
