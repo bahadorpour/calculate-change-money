@@ -6,22 +6,28 @@ html, body {
 
 /* Globals */
 
+:root {
+  --gray: #647272;
+  --light-gray: #e5e5e7;
+  --dark-gray: #3f4f4f;
+}
+
 .bg-gray {
-  background-color: #647272;
+  background-color: var(--gray);
 }
 
 .bg-light-gray {
-  background-color: #e5e5e7;
+  background-color: var(--light-gray);
 }
 
 .bg-dark-gray {
-  background-color: #3f4f4f;
+  background-color: var(--dark-gray);
 }
 
 .text-light-gray {
-  color: #e5e5e7;
+  color: var(--light-gray);
 }
 
 .text-dark-gray {
-  color: #3f4f4f;
+  color: var(--dark-gray);
 }
