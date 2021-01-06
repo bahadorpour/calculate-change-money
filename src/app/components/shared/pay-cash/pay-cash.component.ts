@@ -1,3 +1,7 @@
+/**
+ * PayCashComponent :To show buttons and keyboars
+ * Author: Mojdeh Bahadorpour
+ */
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ShareDataService } from 'src/app/services/share-data.service';
@@ -12,10 +16,11 @@ import { NumericKeyboardComponent } from '../numeric-keyboard/numeric-keyboard.c
 export class PayCashComponent implements OnInit, OnDestroy {
   totalCost: number;
   cash: number;
-
   paymentButtons: number[];
   eruoPymentButtons: string[];
+
   private subscription: Subscription = new Subscription();
+
   @ViewChild(NumericKeyboardComponent, { static: false }) private numericKeyboardComponent: NumericKeyboardComponent;
 
   constructor(private shareDataService: ShareDataService) {
@@ -64,9 +69,11 @@ export class PayCashComponent implements OnInit, OnDestroy {
    */
   private convertNumsToEuro(nums: number[]): void {
     this.eruoPymentButtons = [];
-    nums.forEach(element => {
-      this.eruoPymentButtons.push(this.shareDataService.convertNumToEuro(element));
-    });
+    nums.forEach(
+      element => {
+        this.eruoPymentButtons.push(this.shareDataService.convertNumToEuro(element));
+      }
+    );
   }
 
   /**
@@ -84,13 +91,15 @@ export class PayCashComponent implements OnInit, OnDestroy {
   calculateChange() {
     this.cash = this.shareDataService.floatCash;
     const change = (this.cash - this.totalCost).toFixed(2);
-    Swal.fire({
-      icon: 'success',
-      title: '<strong class="text-success">' + change + '</strong>',
-      text: 'Der errechnete Zahlbetrag',
-      showCancelButton: false,
-      confirmButtonColor: '#19bcc3',
-      confirmButtonText: 'Bestätigt'
-    });
+    Swal.fire(
+      {
+        icon: 'success',
+        title: '<strong class="text-success">' + change + '</strong>',
+        text: 'Der errechnete Zahlbetrag',
+        showCancelButton: false,
+        confirmButtonColor: '#19bcc3',
+        confirmButtonText: 'Bestätigt'
+      }
+    );
   }
 }

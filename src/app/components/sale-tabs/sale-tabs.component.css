@@ -1,4 +1,30 @@
 .tab-close {
-  text-align: right;
   cursor: pointer;
+  color: #3f4f4f;
+}
+
+.nav-item.active {
+  color: #3f4f4f;
+  background-color: #e5e5e7;
+  border-color: #3f4f4f;
+  border: 1px #3f4f4f solid;
+  border-bottom: none;
+}
+
+.nav-item.active:hover {
+  color: white;
+  border-bottom: none;
+}
+
+.nav-item {
+  padding: 0.75rem;
+}
+
+.nav-tabs {
+  border-bottom: none;
+  background-color: #3f4f4f;
+  border-radius: 3px;
+  margin-bottom: 1.5rem!important;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  color: #e5e5e7;
 }

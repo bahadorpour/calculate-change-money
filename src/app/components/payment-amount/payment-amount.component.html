@@ -1,42 +1,15 @@
-<div class="align-items-center  d-flex h-100 mx-auto flex-column">
-  <div class="col-12 mx-0 px-0 text-center">
-    <header
-      class="d-flex flex-column flex-md-row align-items-center p-1 px-md-4 border-bottom box-shadow text-white bg-dark-gray">
-      <div class="mr-md-auto">
-        <button class="btn text-white shadow-none mx-3 " type="button">
-          <fa-icon [icon]="['fas', 'lock']" size="2x"></fa-icon>
-        </button>
-        <button class="btn text-white shadow-none mx-3 " type="button">
-          <fa-icon [icon]="['fas', 'th']" size="2x"></fa-icon>
-        </button>
-        <button class="btn text-white shadow-none mx-3 " type="button">
-          <fa-icon [icon]="['fas', 'sort-amount-down']" transform="flip-h" size="2x"></fa-icon>
-        </button>
-      </div>
-      <nav class="my-2 my-md-0 mr-md-3 mx-4 ">
-        <button class="p-2 text-white" (click)="onAddPerson()">
-          <fa-icon [icon]="['fas', 'plus']" size="2x"></fa-icon>
-        </button>
-      </nav>
-    </header>
-    <main role="main" class="text-center">
-      <div class="row bg-light-gray pt-3 m-0">
-        <div class="col-12">
-          <app-sale-tabs>
-            <app-sale [tabTitle]="'Verkauf 012'"></app-sale>
-          </app-sale-tabs>
-          <ng-template #personEdit>
-            new tab
-          </ng-template>
-        </div>
-      </div>
-
-
-      <div class="row bg-light-gray p-3 m-0">
-        <div class="col-12 text-white">
-          <app-checkout></app-checkout>
-        </div>
-      </div>
-    </main>
+<main role="main" class="text-center bg-light-gray">
+  <div class="row p-0 m-0">
+    <div class="col-12  p-0 m-0">
+      <app-sale-tabs>
+        <app-sale [title]="'Verkauf 10'"></app-sale>
+      </app-sale-tabs>
+    </div>
   </div>
-</div>
+
+  <div class="row bg-light-gray p-3 m-0">
+    <div class="col-12 text-white">
+      <app-checkout></app-checkout>
+    </div>
+  </div>
+</main>

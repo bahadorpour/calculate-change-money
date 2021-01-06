@@ -13,3 +13,7 @@ html, body {
 .bg-gray {
   background-color: #647272;
 }
+
+.bg-light-gray {
+  background-color: #e5e5e7;
+}

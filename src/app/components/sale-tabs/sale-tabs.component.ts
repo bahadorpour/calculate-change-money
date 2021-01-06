@@ -1,16 +1,13 @@
+/**
+ * SaleTabsComponent : A container for all tabs
+ * Author: Mojdeh Bahadorpour
+ */
 import {
-  Component,
-  ContentChildren,
-  QueryList,
-  AfterContentInit,
-  ViewChild,
-  ComponentFactoryResolver,
-  ViewContainerRef
+  AfterContentInit, Component, ComponentFactoryResolver, ContentChildren,
+  QueryList, ViewChild, ViewContainerRef
 } from '@angular/core';
-
-
+import { ShareDataService } from 'src/app/services/share-data.service';
 import { SaleComponent } from '../shared/sale/sale.component';
-
 
 @Component({
   selector: 'app-sale-tabs',
@@ -19,22 +16,20 @@ import { SaleComponent } from '../shared/sale/sale.component';
 })
 export class SaleTabsComponent implements AfterContentInit {
   dynamicTabs: SaleComponent[] = [];
+  dynamicTabsIndex: number;
 
   @ContentChildren(SaleComponent) tabs: QueryList<SaleComponent>;
-
-
   @ViewChild('container', { static: true, read: ViewContainerRef }) dynamicTabPlaceholder;
 
-  /*
-    Alternative approach of using an anchor directive
-    would be to simply get hold of a template variable
-    as follows
-  */
-  // @ViewChild('container', {read: ViewContainerRef}) dynamicTabPlaceholder;
+  constructor(
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private shareDataService: ShareDataService) {
+    this.dynamicTabsIndex = 11;
+  }
 
-  constructor(private _componentFactoryResolver: ComponentFactoryResolver) { }
-
-  // contentChildren are set
+  /**
+   * contentChildren are set
+   */
   ngAfterContentInit() {
     // get all active tabs
     const activeTabs = this.tabs.filter(tab => tab.active);
@@ -45,66 +40,71 @@ export class SaleTabsComponent implements AfterContentInit {
     }
   }
 
-  openTab(title: string, template, data, isCloseable = false) {
-    // get a component factory for our TabComponent
-    const componentFactory = this._componentFactoryResolver.resolveComponentFactory(
-      SaleComponent
-    );
+  /**
+   * get a component factory for our TabComponent
+   * create a component instance
+   * set the according properties on our component instance
+   * remember the dynamic component for rendering the tab navigation headers
+   * set it active
+   */
+  openTab(title: string, isCloseable = false) {
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(SaleComponent);
+    const viewContainerRef = this.dynamicTabPlaceholder;
 
-    // fetch the view container reference from our anchor directive
-    // const viewContainerRef = this.dynamicTabPlaceholder.viewContainer;
-
-    // alternatively...
-    let viewContainerRef = this.dynamicTabPlaceholder;
-
-    // create a component instance
     const componentRef = viewContainerRef.createComponent(componentFactory);
 
-    // set the according properties on our component instance
     const instance: SaleComponent = componentRef.instance as SaleComponent;
     instance.title = title;
-    instance.template = template;
-    instance.dataContext = data;
     instance.isCloseable = isCloseable;
 
-    // remember the dynamic component for rendering the
-    // tab navigation headers
     this.dynamicTabs.push(componentRef.instance as SaleComponent);
+    this.dynamicTabsIndex++;
 
-    // set it active
     this.selectTab(this.dynamicTabs[this.dynamicTabs.length - 1]);
   }
 
-  selectTab(tab: SaleComponent) {
-    // deactivate all tabs
+  /**
+   * deactivate all tabs
+   * activate the tab the user has clicked on
+   */
+  selectTab(saleTab: SaleComponent) {
     this.tabs.toArray().forEach(tab => (tab.active = false));
     this.dynamicTabs.forEach(tab => (tab.active = false));
 
-    // activate the tab the user has clicked on.
-    tab.active = true;
+    saleTab.active = true;
+    this.shareDataService.updateTotalCost(this.shareDataService.convertEuroToNum(saleTab.totalCost));
+    this.shareDataService.updateCash(this.shareDataService.convertNumToEuro(0));
   }
 
+  /**
+   * remove the tab from our array
+   * destroy our dynamically created component again
+   * set tab index to 1st one
+   */
   closeTab(tab: SaleComponent) {
     for (let i = 0; i < this.dynamicTabs.length; i++) {
       if (this.dynamicTabs[i] === tab) {
-        // remove the tab from our array
         this.dynamicTabs.splice(i, 1);
 
-        // destroy our dynamically created component again
-        let viewContainerRef = this.dynamicTabPlaceholder;
+        const viewContainerRef = this.dynamicTabPlaceholder;
         viewContainerRef.remove(i);
-
-        // set tab index to 1st one
-        this.selectTab(this.tabs.first);
+        this.dynamicTabsIndex--;
+        if (this.dynamicTabs.length) {
+          this.selectTab(this.dynamicTabs[this.dynamicTabs.length - 1]);
+        } else {
+          this.selectTab(this.tabs.first);
+        }
         break;
       }
     }
   }
 
+  /**
+   * close the 1st active tab (should only be one at a time)
+   */
   closeActiveTab() {
     const activeTabs = this.dynamicTabs.filter(tab => tab.active);
     if (activeTabs.length > 0) {
-      // close the 1st active tab (should only be one at a time)
       this.closeTab(activeTabs[0]);
     }
   }

@@ -2,7 +2,6 @@
  * Numeric keyboard : A reusable component to implement a numeric simple keyboard
  * Author: Mojdeh Bahadorpour
  */
-
 import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
 import Keyboard from 'simple-keyboard';
 import { ShareDataService } from 'src/app/services/share-data.service';

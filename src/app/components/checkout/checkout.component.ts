@@ -1,3 +1,7 @@
+/**
+ * CheckoutComponent : To show all checkout tabs
+ * Author: Mojdeh Bahadorpour
+ */
 import { Component, OnInit } from '@angular/core';
 import { Button } from 'src/app/models/Button';
 import { DataService } from 'src/app/services/data.service';
@@ -16,7 +20,5 @@ export class CheckoutComponent implements OnInit {
     this.checkoutButtons = this.dataService.getButtons();
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() { }
 }

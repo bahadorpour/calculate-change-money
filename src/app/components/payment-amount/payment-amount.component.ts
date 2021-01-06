@@ -8,12 +8,6 @@ import { SaleTabsComponent } from '../sale-tabs/sale-tabs.component';
 })
 export class PaymentAmountComponent {
 
-  @ViewChild(SaleTabsComponent, { static: false }) tabsComponent;
-  @ViewChild('personEdit', { static: false }) editPersonTemplate;
-
   constructor() { }
 
-  onAddPerson() {
-    this.tabsComponent.openTab('New Person', this.editPersonTemplate, {}, true);
-  }
 }
