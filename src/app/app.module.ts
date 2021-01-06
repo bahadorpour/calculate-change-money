@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { PaymentAmountComponent } from './components/payment-amount/payment-amount.component';
 import { SaleTabsComponent } from './components/sale-tabs/sale-tabs.component';
 import { ComingSoonComponent } from './components/shared/coming-soon/coming-soon.component';
 import { NumericKeyboardComponent } from './components/shared/numeric-keyboard/numeric-keyboard.component';
@@ -16,7 +15,6 @@ import { SaleComponent } from './components/shared/sale/sale.component';
 @NgModule({
   declarations: [
     AppComponent,
-    PaymentAmountComponent,
     SaleComponent,
     PayCashComponent,
     NumericKeyboardComponent,
