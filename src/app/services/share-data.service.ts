@@ -53,7 +53,7 @@ export class ShareDataService {
   }
 
   /**
-   * format numbers to  currency format
+   * format numbers to  currency format: 525.99 --> 526,99 €
    * German uses comma as decimal separator and period for thousands
    * @param number given number
    * @returns A string with a language-sensitive representation of the given number
@@ -66,6 +66,20 @@ export class ShareDataService {
         currency: 'EUR'
       }
     ).format(num);
+  }
+
+  /**
+   * change currency format to float number: 526,99 € --> 525.99
+   * German uses comma as decimal separator and period for thousands
+   * @param euro given euro format
+   * @returns A float number
+   */
+  convertEuroToNum(euroForm: string): number {
+    let euro = euroForm;
+    euro = euro.replace('.', '');
+    euro = euro.replace(',', '.');
+    euro = euro.replace(' €', '');
+    return parseFloat(euro);
   }
 
   /** set float amount of cash */

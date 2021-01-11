@@ -1,5 +1,5 @@
-<div class="row">
-  <form class="col-6 mx-auto">
+<div class="row" [hidden]="!active" class="pane">
+  <div class="col-lg-6 col-md-7 col-sm-9 col-xs-10 mx-auto">
     <div class="row input-box justify-content-center">
       <label for="totalCost" class="col-12 text-left text-truncate">Zu Zahlen</label>
       <div class="col-12">
@@ -14,5 +14,5 @@
         <input readonly type="text" class="input" id="cash" name="cash" [value]="cash">
       </div>
     </div>
-  </form>
+  </div>
 </div>

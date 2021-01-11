@@ -1,0 +1,35 @@
+<ul class="nav nav-tabs justify-content-end text-light-gray bg-dark-gray">
+
+  <li class="mr-auto">
+    <button class="btn text-white shadow-none mx-3 mb-1" type="button" routerLink="others" routerLinkActive="active">
+      <fa-icon [icon]="['fas', 'lock']" size="2x"></fa-icon>
+    </button>
+    <button class="btn text-white shadow-none mx-3 mb-1" type="button" routerLink="others">
+      <fa-icon [icon]="['fas', 'th']" size="2x"></fa-icon>
+    </button>
+    <button class="btn text-white shadow-none mx-3 mb-1" type="button" routerLink="others">
+      <fa-icon [icon]="['fas', 'sort-amount-down']" transform="flip-h" size="2x"></fa-icon>
+    </button>
+  </li>
+
+  <button class="btn text-white shadow-none mx-3 mb-1" (click)="openTab('Verkauf ' + dynamicTabsIndex, true)">
+    <fa-icon [icon]="['fas', 'plus']" size="2x"></fa-icon>
+  </button>
+
+  <li class="nav-item" *ngFor="let tab of tabs;let index=index" (click)="selectTab(tab,index)"
+    [class.active]="tab.active">
+    {{tab.title}}<span class="tab-close text-dark-gray" *ngIf="tab.isCloseable" (click)="closeTab(tab)">x</span>
+  </li>
+
+  <!-- dynamic tabs -->
+  <li class="nav-item" *ngFor="let tab of dynamicTabs;let index=index" (click)="selectTab(tab)"
+    [class.active]="tab.active">
+    {{tab.title}} <span class="tab-close text-dark-gray" *ngIf="tab.isCloseable" (click)="closeTab(tab)">
+      <fa-icon [icon]="['fas', 'times']"></fa-icon>
+    </span>
+  </li>
+
+
+</ul>
+<ng-content></ng-content>
+<ng-template dynamic-tabs #container></ng-template>

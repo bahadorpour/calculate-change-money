@@ -1,0 +1,33 @@
+.tab-close {
+  cursor: pointer;
+}
+
+.nav-item.active {
+  color: var(--dark-gray);
+  background-color: var(--light-gray);
+  border-color: var(--dark-gray);
+  border: 1px var(--dark-gray) solid;
+  border-bottom: none;
+}
+
+.nav-item.active:hover {
+  color: white;
+  border-bottom: none;
+}
+
+.nav-item {
+  padding: 0.75rem;
+}
+
+.nav-tabs {
+  border-bottom: none;
+  border-radius: 3px;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.btn:hover {
+  color: #fff;
+  background-color: var(--dark-gray);
+  border-color: var(--light-gray);
+}

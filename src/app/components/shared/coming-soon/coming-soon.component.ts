@@ -1,3 +1,7 @@
+/**
+ * ComingSoonComponent : Under construction...
+ * Author: Mojdeh Bahadorpour
+ */
 import { Component, OnInit } from '@angular/core';
 
 @Component({

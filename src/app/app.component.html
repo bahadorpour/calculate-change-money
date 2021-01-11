@@ -1,1 +1,16 @@
-<app-payment-amount></app-payment-amount>
+<main role="main" class="text-center bg-light-gray">
+  <div class="row p-0 m-0">
+    <div class="col-12  p-0 m-0">
+      <app-sale-tabs>
+        <app-sale [title]="'Verkauf 10'"></app-sale>
+      </app-sale-tabs>
+    </div>
+  </div>
+
+  <div class="row bg-light-gray pt-3 pb-0 m-0">
+    <div class="col-12 text-white">
+      <app-checkout></app-checkout>
+    </div>
+  </div>
+</main>
+<router-outlet></router-outlet>

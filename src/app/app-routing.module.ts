@@ -1,12 +1,11 @@
 /**
  * Routing Module
  * Author: Mojdeh Bahadorpour
- * Company: ITQ
  */
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ComingSoonComponent } from './components/shared/coming-soon/coming-soon.component';
 import { PayCashComponent } from './components/shared/pay-cash/pay-cash.component';
 
 export const routes: Routes = [
