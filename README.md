@@ -8,8 +8,8 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.12.
 
 ### To run app on your own computer 🚀 
-
-* Clone this repository
+* Clone this repository `git clone git@github.com:bahadorpour/calculate-change-money.git`
+* `cd calculate-change-money`
 * `npm install`
 * Run `ng serve` for a dev server
 * Visit [http://localhost:4200](http://localhost:4200)
